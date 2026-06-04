@@ -44,7 +44,7 @@
     <section class="hero">
       <div class="hero__glow" aria-hidden="true"></div>
       <div class="container hero__inner">
-        <p class="hero__eyebrow">Senior Game Developer · AI Software Engineer</p>
+        <p class="hero__eyebrow">Senior Game Developer · Backend &amp; Tooling</p>
         <h1 class="hero__title">
           I build the <span class="grad">backends, tools &amp; systems</span> that power online game worlds.
         </h1>
@@ -87,12 +87,13 @@
             </div>
             <p>
               An original sandbox RPG where magic and adventure meet. I'm building a fast, modular and scalable
-              architecture: a <strong>Godot (C#)</strong> client talking over <strong>TCP</strong> to a
-              <strong>C++ backend</strong>, with <strong>Lua</strong> driving key gameplay systems and
-              <strong>Redis</strong> keeping data synchronized in real time across servers — responsive even under heavy load.
+              architecture. It began on <strong>Godot</strong> with a <strong>C++</strong> backend and <strong>Lua</strong>,
+              and now runs fully on <strong>Unity (C#)</strong> — networking over <strong>UDP</strong> via
+              <strong>PurrNet</strong> (an open-source library I contribute to) into my own <strong>C# gateway</strong>,
+              with <strong>Redis</strong> keeping data synchronized in real time across servers — responsive even under heavy load.
             </p>
             <ul class="chips">
-              <li>Godot · C#</li><li>C++ Backend</li><li>Lua</li><li>TCP Networking</li><li>Redis</li><li>MySQL</li>
+              <li>Unity · C#</li><li>PurrNet (UDP)</li><li>Custom C# Gateway</li><li>Redis</li>
             </ul>
             <div class="game__links">
               <a class="link" href="https://thelastmagic.com/media" target="_blank" rel="noopener">Official site ↗</a>
@@ -113,10 +114,10 @@
         <!-- Two-up grid: Ravendawn + Grand Line -->
         <div class="game-grid">
           <article class="game game--card">
-            <a class="game__media game__media--video" href="https://www.youtube.com/watch?v=shuULlsl6G8" target="_blank" rel="noopener" aria-label="Watch Ravendawn / RavenQuest trailer">
+            <button class="game__media game__media--video" data-video="shuULlsl6G8" aria-label="Play Ravendawn / RavenQuest trailer">
               <img src="assets/games/ravendawn/cover.jpg" alt="Ravendawn / RavenQuest" loading="lazy" />
               <span class="play" aria-hidden="true"></span>
-            </a>
+            </button>
             <div class="game__body">
               <div class="game__heading">
                 <h3>Ravendawn / RavenQuest</h3>
@@ -134,10 +135,10 @@
           </article>
 
           <article class="game game--card">
-            <a class="game__media game__media--video" href="https://www.youtube.com/watch?v=isOuPakU_o4" target="_blank" rel="noopener" aria-label="Watch Grand Line Adventures trailer">
+            <button class="game__media game__media--video" data-video="isOuPakU_o4" aria-label="Play Grand Line Adventures trailer">
               <img src="assets/games/grandline/cover.jpg" alt="Grand Line Adventures" loading="lazy" />
               <span class="play" aria-hidden="true"></span>
-            </a>
+            </button>
             <div class="game__body">
               <div class="game__heading">
                 <h3>Grand Line Adventures</h3>
@@ -240,7 +241,7 @@
             <div class="timeline__what">
               <h3>Founder &amp; Senior Game Developer</h3>
               <span class="timeline__org">The Last Magic (Self-employed)</span>
-              <p>Building an original sandbox RPG: Godot (C#) client, C++ backend, Lua gameplay systems, TCP + Redis networking.</p>
+              <p>Building an original sandbox RPG: fully on Unity (C#) with PurrNet over UDP into a custom C# gateway and Redis sync. Started on Godot with a C++/Lua backend.</p>
             </div>
           </li>
           <li class="timeline__item">
@@ -312,6 +313,14 @@
     <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous">‹</button>
     <img class="lightbox__img" id="lightboxImg" alt="" />
     <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next">›</button>
+  </div>
+
+  <!-- Video modal -->
+  <div class="videobox" id="videobox" aria-hidden="true">
+    <button class="lightbox__close" id="videoClose" aria-label="Close">×</button>
+    <div class="videobox__frame">
+      <iframe id="videoFrame" title="Trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
   </div>
 
   <script src="script.js"></script>

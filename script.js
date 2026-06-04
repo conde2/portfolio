@@ -71,3 +71,29 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight') step(1);
   if (e.key === 'ArrowLeft') step(-1);
 });
+
+// Inline video modal (YouTube)
+const vb = document.getElementById('videobox');
+const vbFrame = document.getElementById('videoFrame');
+
+function openVideo(id) {
+  vbFrame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+  vb.classList.add('is-open');
+  vb.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeVideo() {
+  vb.classList.remove('is-open');
+  vb.setAttribute('aria-hidden', 'true');
+  vbFrame.src = ''; // stop playback
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.game__media--video').forEach((btn) => {
+  btn.addEventListener('click', () => openVideo(btn.dataset.video));
+});
+document.getElementById('videoClose').addEventListener('click', closeVideo);
+vb.addEventListener('click', (e) => { if (e.target === vb) closeVideo(); });
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && vb.classList.contains('is-open')) closeVideo();
+});
