@@ -16,7 +16,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -40,27 +40,68 @@
   </header>
 
   <main id="top">
-    <!-- ===== HERO ===== -->
-    <section class="hero">
+    <!-- ===== HERO / ARCADE HEADER ===== -->
+    <section class="hero" id="hero">
+      <!-- Playable Asteroids backdrop -->
+      <canvas class="hero__canvas" id="asteroids" aria-hidden="true"></canvas>
+      <div class="hero__scanlines" aria-hidden="true"></div>
       <div class="hero__glow" aria-hidden="true"></div>
-      <div class="container hero__inner">
-        <p class="hero__eyebrow">Senior Game Developer · Backend &amp; Tooling</p>
+
+      <!-- In-game HUD -->
+      <div class="hud" id="hud" hidden>
+        <span class="hud__score">SCORE <b id="hudScore">0</b></span>
+        <span class="hud__lives" id="hudLives">▲ ▲ ▲</span>
+        <button class="hud__exit" id="gameExit" type="button">EXIT ✕</button>
+      </div>
+
+      <!-- Controls legend (desktop, while playing) -->
+      <div class="controls" id="controlsHint" hidden>
+        <span><kbd>◀</kbd><kbd>▶</kbd> Rotate</span>
+        <span><kbd>▲</kbd> Thrust</span>
+        <span><kbd>Space</kbd> Fire</span>
+      </div>
+
+      <!-- Game over overlay -->
+      <div class="gameover" id="gameOver" hidden>
+        <p class="gameover__title">GAME OVER</p>
+        <p class="gameover__score">SCORE <span id="finalScore">0</span></p>
+        <div class="gameover__actions">
+          <button class="arcade-btn" id="gameRestart" type="button">↺ PLAY AGAIN</button>
+          <button class="arcade-btn arcade-btn--ghost" id="gameOverExit" type="button">EXIT ✕</button>
+        </div>
+      </div>
+
+      <!-- Touch controls (mobile) -->
+      <div class="touch" id="touch" hidden>
+        <div class="touch__left">
+          <button class="touch__btn" data-key="ArrowLeft" aria-label="Rotate left">◀</button>
+          <button class="touch__btn" data-key="ArrowRight" aria-label="Rotate right">▶</button>
+        </div>
+        <div class="touch__right">
+          <button class="touch__btn" data-key="ArrowUp" aria-label="Thrust">▲</button>
+          <button class="touch__btn touch__btn--fire" data-key="Space" aria-label="Fire">●</button>
+        </div>
+      </div>
+
+      <div class="container hero__inner" id="heroContent">
+        <p class="hero__eyebrow"><span class="hero__coin">🕹 ARCADE MODE</span> Senior Game Developer · Backend &amp; Tooling</p>
         <h1 class="hero__title">
           I build the <span class="grad">backends, tools &amp; systems</span> that power online game worlds.
         </h1>
         <p class="hero__lead">
           10+ years engineering MMORPG servers, real-time networking and developer tooling in
-          <strong>C++</strong>, <strong>Lua</strong> and <strong>C#</strong>. I turn heavy, high-concurrency
+          <strong>C++</strong>, <strong>C#</strong> and <strong>Lua</strong>. I turn heavy, high-concurrency
           gameplay into fast, modular, scalable architecture.
         </p>
         <div class="hero__cta">
+          <button class="btn btn--play" id="gameStart" type="button">▶ PLAY ASTEROIDS</button>
           <a class="btn btn--primary" href="#games">View my games</a>
           <a class="btn btn--ghost" href="#contact">Get in touch</a>
         </div>
         <ul class="hero__stats">
           <li><strong>10+</strong><span>years shipping games</span></li>
           <li><strong>4</strong><span>live titles contributed to</span></li>
-          <li><strong>C++ / Lua</strong><span>core specialty</span></li>
+          <li><strong>C++ · C# · Lua</strong><span>core specialty</span></li>
         </ul>
       </div>
     </section>
@@ -323,6 +364,7 @@
     </div>
   </div>
 
+  <script src="asteroids.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

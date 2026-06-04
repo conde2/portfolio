@@ -10,7 +10,8 @@ networking and tooling. Static site — plain HTML/CSS/JS, no build step.
 ```
 index.html      # all content (hero, games, stack, experience, contact)
 styles.css      # dark game-dev theme, responsive
-script.js       # nav, scroll reveal, screenshot lightbox
+script.js       # nav, scroll reveal, screenshot lightbox, inline video
+asteroids.js    # playable Asteroids minigame in the arcade header
 assets/games/   # game covers & The Last Magic screenshots
 .nojekyll       # tells GitHub Pages to serve folders as-is
 ```

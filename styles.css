@@ -18,6 +18,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 body {
   font-family: var(--font);
@@ -61,23 +62,52 @@ a { color: inherit; text-decoration: none; }
 .nav__toggle { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 6px; }
 .nav__toggle span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
 
-/* ===== Hero ===== */
-.hero { position: relative; padding: 96px 0 72px; overflow: hidden; }
+/* ===== Hero / Arcade header ===== */
+.hero {
+  position: relative; padding: 92px 0 76px; overflow: hidden;
+  min-height: min(86vh, 760px); display: flex; align-items: center;
+  border-bottom: 1px solid var(--border);
+  background:
+    linear-gradient(rgba(11,15,26,.4), rgba(11,15,26,.4)),
+    repeating-linear-gradient(0deg, transparent 0 38px, rgba(36,48,73,.18) 38px 39px),
+    repeating-linear-gradient(90deg, transparent 0 38px, rgba(36,48,73,.18) 38px 39px);
+}
+/* neon cabinet frame */
+.hero::after {
+  content: ""; position: absolute; inset: 14px; border-radius: 18px; z-index: 4;
+  border: 1px solid rgba(139,92,246,.35);
+  box-shadow: inset 0 0 60px rgba(139,92,246,.12), 0 0 0 1px rgba(34,211,238,.08);
+  pointer-events: none;
+}
+.hero__canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+.hero__scanlines {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: .5;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px);
+  mix-blend-mode: multiply;
+}
 .hero__glow {
   position: absolute; top: -180px; left: 50%; transform: translateX(-50%);
-  width: 900px; height: 600px;
-  background: radial-gradient(circle at 30% 30%, rgba(139,92,246,.35), transparent 60%),
-              radial-gradient(circle at 70% 50%, rgba(34,211,238,.22), transparent 55%);
-  filter: blur(20px); pointer-events: none; z-index: 0;
+  width: 900px; height: 600px; z-index: 2;
+  background: radial-gradient(circle at 30% 30%, rgba(139,92,246,.30), transparent 60%),
+              radial-gradient(circle at 70% 50%, rgba(34,211,238,.18), transparent 55%);
+  filter: blur(20px); pointer-events: none;
 }
-.hero__inner { position: relative; z-index: 1; max-width: 880px; }
+.hero__inner { position: relative; z-index: 5; max-width: 880px; transition: opacity .35s ease, transform .35s ease; }
 .hero__eyebrow {
-  font-family: var(--display); text-transform: uppercase; letter-spacing: .18em;
+  font-family: var(--display); text-transform: uppercase; letter-spacing: .14em;
   font-size: 12.5px; color: var(--accent-2); font-weight: 600; margin-bottom: 22px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
 }
+.hero__coin {
+  font-family: 'Press Start 2P', var(--display); font-size: 10px; letter-spacing: .02em;
+  color: var(--accent); padding: 6px 10px; border: 1px solid rgba(139,92,246,.4);
+  border-radius: 6px; background: rgba(139,92,246,.1); animation: coinblink 1.4s steps(2) infinite;
+}
+@keyframes coinblink { 0%,60% { opacity: 1; } 61%,100% { opacity: .55; } }
 .hero__title {
   font-family: var(--display); font-weight: 700; letter-spacing: -.02em;
   font-size: clamp(2.1rem, 5.2vw, 3.8rem); line-height: 1.08; margin-bottom: 22px;
+  text-shadow: 0 0 24px rgba(139,92,246,.25);
 }
 .hero__lead { font-size: clamp(1rem, 1.4vw, 1.2rem); color: var(--muted); max-width: 640px; }
 .hero__lead strong { color: var(--text); font-weight: 600; }
@@ -86,6 +116,89 @@ a { color: inherit; text-decoration: none; }
 .hero__stats li { display: flex; flex-direction: column; }
 .hero__stats strong { font-family: var(--display); font-size: 1.6rem; color: var(--text); }
 .hero__stats span { font-size: 13px; color: var(--muted); }
+
+/* Playing state: fade the marketing copy, let the game breathe */
+.hero.is-playing .hero__inner { opacity: 0; transform: scale(.98); pointer-events: none; }
+.hero.is-playing .hero__canvas { pointer-events: auto; }
+.hero.is-playing .hero__scanlines { opacity: .35; }
+
+/* Play button (arcade) */
+.btn--play {
+  font-family: 'Press Start 2P', var(--display); font-size: 11px; letter-spacing: .02em;
+  color: #0b0f1a; background: var(--accent-2); border-color: var(--accent-2);
+  box-shadow: 0 0 0 0 rgba(34,211,238,.5); animation: playpulse 2s infinite;
+}
+.btn--play:hover { transform: translateY(-2px); background: #5ee7f7; }
+@keyframes playpulse {
+  0% { box-shadow: 0 0 0 0 rgba(34,211,238,.5); }
+  70% { box-shadow: 0 0 0 12px rgba(34,211,238,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,211,238,0); }
+}
+
+/* HUD */
+.hud {
+  position: absolute; top: 30px; left: 0; right: 0; z-index: 6;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 0 40px; font-family: 'Press Start 2P', var(--display); font-size: 12px;
+  color: var(--accent-2); pointer-events: none;
+}
+.hud__score b { color: #fff; }
+.hud__lives { color: var(--accent); letter-spacing: 3px; }
+.hud__exit {
+  font-family: inherit; font-size: 10px; color: #0b0f1a; background: var(--accent-2);
+  border: 1px solid var(--accent-2); border-radius: 6px; padding: 9px 12px; cursor: pointer; pointer-events: auto;
+  box-shadow: 0 0 16px rgba(34,211,238,.45); transition: transform .15s, background .2s, box-shadow .2s;
+}
+.hud__exit:hover { background: #5ee7f7; transform: translateY(-1px); box-shadow: 0 0 22px rgba(34,211,238,.7); }
+
+/* Controls legend */
+.controls {
+  position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 6;
+  display: flex; gap: 22px; flex-wrap: wrap; justify-content: center;
+  padding: 10px 18px; border-radius: 10px; pointer-events: none;
+  background: rgba(11,15,26,.6); border: 1px solid var(--border); backdrop-filter: blur(6px);
+  font-size: 12.5px; color: var(--muted);
+}
+.controls span { display: inline-flex; align-items: center; gap: 7px; }
+.controls kbd {
+  font-family: 'Press Start 2P', var(--display); font-size: 9px; line-height: 1; color: var(--text);
+  background: rgba(255,255,255,.06); border: 1px solid var(--border); border-bottom-width: 2px;
+  border-radius: 5px; padding: 6px 7px; min-width: 22px; text-align: center;
+}
+
+/* Game over */
+.gameover {
+  position: absolute; inset: 0; z-index: 7; display: grid; place-content: center; gap: 18px;
+  text-align: center; background: rgba(5,8,15,.72); backdrop-filter: blur(2px);
+}
+.gameover__title {
+  font-family: 'Press Start 2P', var(--display); font-size: clamp(20px, 5vw, 40px);
+  color: var(--accent); text-shadow: 0 0 24px rgba(139,92,246,.6);
+}
+.gameover__score { font-family: 'Press Start 2P', var(--display); font-size: 14px; color: var(--accent-2); }
+.arcade-btn {
+  justify-self: center; font-family: 'Press Start 2P', var(--display); font-size: 12px;
+  color: #0b0f1a; background: var(--accent-2); border: 0; border-radius: 8px;
+  padding: 14px 20px; cursor: pointer; transition: transform .15s, background .2s;
+}
+.arcade-btn:hover { transform: translateY(-2px); background: #5ee7f7; }
+.gameover__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.arcade-btn--ghost { background: transparent; color: var(--accent-2); border: 1px solid var(--accent-2); }
+.arcade-btn--ghost:hover { background: rgba(34,211,238,.12); color: #fff; }
+
+/* Touch controls */
+.touch {
+  position: absolute; left: 0; right: 0; bottom: 26px; z-index: 6;
+  display: flex; justify-content: space-between; padding: 0 26px; pointer-events: none;
+}
+.touch__left, .touch__right { display: flex; gap: 14px; pointer-events: auto; }
+.touch__btn {
+  width: 58px; height: 58px; border-radius: 50%; font-size: 18px;
+  background: rgba(20,27,45,.7); color: #fff; border: 1px solid var(--accent);
+  backdrop-filter: blur(4px); cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: none;
+}
+.touch__btn:active { background: var(--accent); }
+.touch__btn--fire { color: var(--accent-2); border-color: var(--accent-2); font-size: 24px; }
 
 /* ===== Buttons ===== */
 .btn {
