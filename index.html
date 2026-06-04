@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joao Pasqualini Costa — Senior Game Developer</title>
+  <meta name="description" content="Senior Game Developer & AI Software Engineer specializing in C++/Lua game backends, real-time networking, and tooling. Worked on Ravendawn, RavenQuest, Grand Line Adventures, and The Last Magic." />
+  <meta name="author" content="Joao Pasqualini Costa" />
+  <meta name="theme-color" content="#0b0f1a" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Joao Pasqualini Costa — Senior Game Developer" />
+  <meta property="og:description" content="C++/Lua game backends, real-time networking & developer tooling. Builder of MMORPG worlds." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/games/thelastmagic/game-preview.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ===== NAV ===== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#top" class="nav__brand">
+        <span class="nav__mark">JC</span>
+        <span class="nav__name">Joao Pasqualini Costa</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#games">Games</a>
+        <a href="#stack">Stack</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <p class="hero__eyebrow">Senior Game Developer · AI Software Engineer</p>
+        <h1 class="hero__title">
+          I build the <span class="grad">backends, tools &amp; systems</span> that power online game worlds.
+        </h1>
+        <p class="hero__lead">
+          10+ years engineering MMORPG servers, real-time networking and developer tooling in
+          <strong>C++</strong>, <strong>Lua</strong> and <strong>C#</strong>. I turn heavy, high-concurrency
+          gameplay into fast, modular, scalable architecture.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#games">View my games</a>
+          <a class="btn btn--ghost" href="#contact">Get in touch</a>
+        </div>
+        <ul class="hero__stats">
+          <li><strong>10+</strong><span>years shipping games</span></li>
+          <li><strong>4</strong><span>live titles contributed to</span></li>
+          <li><strong>C++ / Lua</strong><span>core specialty</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== GAMES ===== -->
+    <section class="section" id="games">
+      <div class="container">
+        <header class="section__head">
+          <span class="section__kicker">01 — Portfolio</span>
+          <h2 class="section__title">Games I've worked on</h2>
+          <p class="section__sub">From live MMORPGs to an original sandbox RPG I'm building today — focused on server architecture, networking and gameplay systems.</p>
+        </header>
+
+        <!-- The Last Magic (featured) -->
+        <article class="game game--featured">
+          <div class="game__media">
+            <span class="badge badge--live">In development</span>
+            <img src="assets/games/thelastmagic/game-preview.png" alt="The Last Magic gameplay preview" loading="lazy" />
+          </div>
+          <div class="game__body">
+            <div class="game__heading">
+              <h3>The Last Magic</h3>
+              <span class="game__role">Founder &amp; Lead Engineer · 2023 — Present</span>
+            </div>
+            <p>
+              An original sandbox RPG where magic and adventure meet. I'm building a fast, modular and scalable
+              architecture: a <strong>Godot (C#)</strong> client talking over <strong>TCP</strong> to a
+              <strong>C++ backend</strong>, with <strong>Lua</strong> driving key gameplay systems and
+              <strong>Redis</strong> keeping data synchronized in real time across servers — responsive even under heavy load.
+            </p>
+            <ul class="chips">
+              <li>Godot · C#</li><li>C++ Backend</li><li>Lua</li><li>TCP Networking</li><li>Redis</li><li>MySQL</li>
+            </ul>
+            <div class="game__links">
+              <a class="link" href="https://thelastmagic.com/media" target="_blank" rel="noopener">Official site ↗</a>
+            </div>
+
+            <div class="gallery" id="tlm-gallery">
+              <button class="gallery__thumb" data-full="assets/games/thelastmagic/1.png"><img src="assets/games/thelastmagic/1.png" alt="The Last Magic screenshot 1" loading="lazy" /></button>
+              <button class="gallery__thumb" data-full="assets/games/thelastmagic/2.png"><img src="assets/games/thelastmagic/2.png" alt="The Last Magic screenshot 2" loading="lazy" /></button>
+              <button class="gallery__thumb" data-full="assets/games/thelastmagic/3.png"><img src="assets/games/thelastmagic/3.png" alt="The Last Magic screenshot 3" loading="lazy" /></button>
+              <button class="gallery__thumb" data-full="assets/games/thelastmagic/4.png"><img src="assets/games/thelastmagic/4.png" alt="The Last Magic screenshot 4" loading="lazy" /></button>
+              <button class="gallery__thumb" data-full="assets/games/thelastmagic/5.png"><img src="assets/games/thelastmagic/5.png" alt="The Last Magic screenshot 5" loading="lazy" /></button>
+              <button class="gallery__thumb" data-full="assets/games/thelastmagic/6.png"><img src="assets/games/thelastmagic/6.png" alt="The Last Magic screenshot 6" loading="lazy" /></button>
+              <button class="gallery__thumb" data-full="assets/games/thelastmagic/7.png"><img src="assets/games/thelastmagic/7.png" alt="The Last Magic screenshot 7" loading="lazy" /></button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Two-up grid: Ravendawn + Grand Line -->
+        <div class="game-grid">
+          <article class="game game--card">
+            <a class="game__media game__media--video" href="https://www.youtube.com/watch?v=shuULlsl6G8" target="_blank" rel="noopener" aria-label="Watch Ravendawn / RavenQuest trailer">
+              <img src="assets/games/ravendawn/cover.jpg" alt="Ravendawn / RavenQuest" loading="lazy" />
+              <span class="play" aria-hidden="true"></span>
+            </a>
+            <div class="game__body">
+              <div class="game__heading">
+                <h3>Ravendawn / RavenQuest</h3>
+                <span class="game__role">Senior Software Engineer · Tavernlight Games · 2022 — 2023</span>
+              </div>
+              <p>
+                Contributed to both client and server for these live MMORPGs. Integrated <strong>Redis</strong> for
+                caching and distributed data, reworked data structures to kill bottlenecks, improved network
+                efficiency, and shipped new gameplay and UI/UX features.
+              </p>
+              <ul class="chips">
+                <li>C++</li><li>Lua</li><li>Redis</li><li>MySQL</li><li>Networking</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="game game--card">
+            <a class="game__media game__media--video" href="https://www.youtube.com/watch?v=isOuPakU_o4" target="_blank" rel="noopener" aria-label="Watch Grand Line Adventures trailer">
+              <img src="assets/games/grandline/cover.jpg" alt="Grand Line Adventures" loading="lazy" />
+              <span class="play" aria-hidden="true"></span>
+            </a>
+            <div class="game__body">
+              <div class="game__heading">
+                <h3>Grand Line Adventures</h3>
+                <span class="game__role">Full Stack Engineer · Wingeon Game Studios · 2018 — 2021</span>
+              </div>
+              <p>
+                Built scalable game systems — tournaments, alliances and in-game events — with distributed
+                <strong>Redis + Lua</strong> real-time sync. Cut bandwidth by refining client-server comms, designed
+                <strong>MySQL</strong> schemas, and tracked live analytics with <strong>Grafana</strong>.
+              </p>
+              <ul class="chips">
+                <li>C++</li><li>Lua</li><li>Redis</li><li>MySQL</li><li>Grafana</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== STACK ===== -->
+    <section class="section section--alt" id="stack">
+      <div class="container">
+        <header class="section__head">
+          <span class="section__kicker">02 — Toolbox</span>
+          <h2 class="section__title">Stack &amp; specialties</h2>
+          <p class="section__sub">My center of gravity is server-side: backend engines, real-time networking, data and the tooling that keeps a game studio moving.</p>
+        </header>
+
+        <div class="stack-grid">
+          <div class="stack-card stack-card--wide">
+            <h3>⚙️ Backend &amp; Game Servers</h3>
+            <p>High-performance, event-driven game servers and gameplay systems.</p>
+            <ul class="chips chips--lg">
+              <li>C++</li><li>Lua</li><li>C#</li><li>Event-driven architecture</li><li>Modular &amp; scalable design</li><li>Game AI behaviors</li>
+            </ul>
+          </div>
+
+          <div class="stack-card">
+            <h3>🌐 Networking &amp; Real-time</h3>
+            <p>Low-bandwidth, high-concurrency multiplayer.</p>
+            <ul class="chips">
+              <li>TCP</li><li>Redis pub/sub</li><li>Distributed sync</li><li>Caching</li>
+            </ul>
+          </div>
+
+          <div class="stack-card">
+            <h3>🗄️ Data &amp; Persistence</h3>
+            <p>Schemas and stores tuned for game workloads.</p>
+            <ul class="chips">
+              <li>MySQL</li><li>Redis</li><li>Query optimization</li>
+            </ul>
+          </div>
+
+          <div class="stack-card">
+            <h3>🛠️ Tooling &amp; DevOps</h3>
+            <p>Pipelines, analytics and automation for fast iteration.</p>
+            <ul class="chips">
+              <li>GitHub</li><li>GitHub Actions (CI/CD)</li><li>Grafana</li><li>Trello / Monday</li>
+            </ul>
+          </div>
+
+          <div class="stack-card">
+            <h3>🤖 AI &amp; Automation</h3>
+            <p>AI-powered tools that accelerate development and reduce bottlenecks.</p>
+            <ul class="chips">
+              <li>AI dev tooling</li><li>Rapid prototyping</li><li>Workflow optimization</li><li>Python</li>
+            </ul>
+          </div>
+
+          <div class="stack-card">
+            <h3>🎮 Engines &amp; Web</h3>
+            <p>Client-side and full-stack when a project needs it.</p>
+            <ul class="chips">
+              <li>Godot</li><li>Unity</li><li>TypeScript</li><li>Angular</li><li>Firebase</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section class="section" id="experience">
+      <div class="container">
+        <header class="section__head">
+          <span class="section__kicker">03 — Track record</span>
+          <h2 class="section__title">Experience</h2>
+        </header>
+
+        <ol class="timeline">
+          <li class="timeline__item">
+            <div class="timeline__when">Feb 2025 — Present</div>
+            <div class="timeline__what">
+              <h3>Senior AI Software Engineer</h3>
+              <span class="timeline__org">Turing</span>
+              <p>Designing AI-powered tools that accelerate game development, training systems and production workflows — automation, rapid prototyping and data-driven processes.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__when">Nov 2023 — Present</div>
+            <div class="timeline__what">
+              <h3>Founder &amp; Senior Game Developer</h3>
+              <span class="timeline__org">The Last Magic (Self-employed)</span>
+              <p>Building an original sandbox RPG: Godot (C#) client, C++ backend, Lua gameplay systems, TCP + Redis networking.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__when">Mar 2022 — Nov 2023</div>
+            <div class="timeline__what">
+              <h3>Senior Software Engineer</h3>
+              <span class="timeline__org">Tavernlight Games — Ravendawn / RavenQuest</span>
+              <p>Client &amp; server work on live MMORPGs. Redis caching, data-structure optimization, network efficiency and new gameplay/UI features.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__when">Jan 2018 — Jul 2021</div>
+            <div class="timeline__what">
+              <h3>Full Stack Engineer</h3>
+              <span class="timeline__org">Wingeon Game Studios — Grand Line Adventures</span>
+              <p>Scalable game systems, distributed Redis/Lua sync, MySQL design, Grafana analytics. Led a small team with Agile workflows.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__when">Apr 2020 — Mar 2022</div>
+            <div class="timeline__what">
+              <h3>Founder</h3>
+              <span class="timeline__org">ZPiano</span>
+              <p>Modular web app (Angular, Ionic, Firebase) with serverless functions, Stripe/Algolia integration, PWA + SSR and CI/CD via GitHub Actions.</p>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__when">2016</div>
+            <div class="timeline__what">
+              <h3>Unity Developer (Intern)</h3>
+              <span class="timeline__org">PlayWest — Bristol, UK</span>
+              <p>Built a Unity/C# Android prototype for the RNLI to locate the nearest available volunteers during emergencies.</p>
+            </div>
+          </li>
+        </ol>
+
+        <p class="edu">
+          🎓 <strong>B.E. Computer Engineering</strong>, Universidade Federal de São Carlos (UFSCar) ·
+          Computer Games &amp; Programming, University of the West of England.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section section--alt" id="contact">
+      <div class="container contact">
+        <span class="section__kicker">04 — Say hello</span>
+        <h2 class="section__title">Let's build something</h2>
+        <p class="section__sub">Open to senior game backend, tooling and AI engineering work. Based in São Paulo, Brazil — working globally.</p>
+        <div class="contact__links">
+          <a class="btn btn--primary" href="mailto:joao_pc23@hotmail.com">Email me</a>
+          <a class="btn btn--ghost" href="https://www.linkedin.com/in/joaopasqualini-costa-9908051a0" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn--ghost" href="https://github.com/conde2" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year"></span> Joao Pasqualini Costa</span>
+      <span>Built with C++ energy &amp; plain HTML/CSS.</span>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">×</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous">‹</button>
+    <img class="lightbox__img" id="lightboxImg" alt="" />
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next">›</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
