@@ -262,7 +262,7 @@ a { color: inherit; text-decoration: none; }
 .badge--live { background: rgba(34,211,238,.18); color: var(--accent-2); border: 1px solid rgba(34,211,238,.4); }
 .badge--proto { background: rgba(139,92,246,.2); color: var(--accent); border: 1px solid rgba(139,92,246,.45); }
 
-.game-grid { display: grid; gap: 28px; grid-template-columns: 1fr; }
+.game-grid { display: grid; gap: 28px; grid-template-columns: 1fr; margin-bottom: 28px; }
 @media (min-width: 760px) { .game-grid { grid-template-columns: 1fr 1fr; } }
 
 /* video overlay */
