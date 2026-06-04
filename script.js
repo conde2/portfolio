@@ -72,6 +72,19 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowLeft') step(-1);
 });
 
+// Auto-play looping preview videos (e.g. Slotrium) only while on screen
+const previewVideos = document.querySelectorAll('.game__video');
+if (previewVideos.length) {
+  const vio = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const v = entry.target;
+      if (entry.isIntersecting) { v.play().catch(() => {}); }
+      else v.pause();
+    });
+  }, { threshold: 0.35 });
+  previewVideos.forEach((v) => vio.observe(v));
+}
+
 // Inline video modal (YouTube)
 const vb = document.getElementById('videobox');
 const vbFrame = document.getElementById('videoFrame');

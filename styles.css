@@ -244,7 +244,15 @@ a { color: inherit; text-decoration: none; }
 @media (min-width: 900px) {
   .game--featured { display: grid; grid-template-columns: 1.05fr 1fr; }
   .game--featured .game__media { aspect-ratio: auto; height: 100%; min-height: 420px; }
+  /* mirrored featured: media on the right */
+  .game--reverse .game__media { order: 2; }
+  .game--reverse .game__body { order: 1; }
 }
+
+/* inline video player media */
+.game__media--player { background: #05070d; }
+.game__video { width: 100%; height: 100%; object-fit: contain; display: block; background: #05070d; }
+@media (max-width: 899px) { .game__media--player { aspect-ratio: 16 / 9; } }
 
 .badge {
   position: absolute; top: 14px; left: 14px; z-index: 2;
@@ -252,6 +260,7 @@ a { color: inherit; text-decoration: none; }
   padding: 6px 12px; border-radius: 999px; backdrop-filter: blur(6px);
 }
 .badge--live { background: rgba(34,211,238,.18); color: var(--accent-2); border: 1px solid rgba(34,211,238,.4); }
+.badge--proto { background: rgba(139,92,246,.2); color: var(--accent); border: 1px solid rgba(139,92,246,.45); }
 
 .game-grid { display: grid; gap: 28px; grid-template-columns: 1fr; }
 @media (min-width: 760px) { .game-grid { grid-template-columns: 1fr 1fr; } }
