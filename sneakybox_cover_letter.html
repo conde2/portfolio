@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cover Letter | Joao Pasqualini Costa | SneakyBox</title>
+  <style>
+    :root {
+      --paper: #f8f2e8;
+      --paper-strong: #efe4d1;
+      --ink: #1d2a2f;
+      --muted: #58656a;
+      --accent: #df6b3f;
+      --accent-soft: #f1b37d;
+      --accent-2: #2f8575;
+      --line: #d7c6ae;
+      --panel: rgba(255, 251, 244, 0.92);
+      --shadow: rgba(29, 42, 47, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background:
+        radial-gradient(circle at top left, rgba(241, 179, 125, 0.45), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(47, 133, 117, 0.22), transparent 30%),
+        linear-gradient(160deg, #fcf7ef 0%, #f2e4cf 100%);
+      color: var(--ink);
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      padding: 28px;
+    }
+
+    .page {
+      position: relative;
+      width: min(100%, 900px);
+      min-height: calc(297mm - 18mm);
+      margin: 0 auto;
+      padding: 36px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.18)),
+        repeating-linear-gradient(
+          0deg,
+          rgba(29, 42, 47, 0.03),
+          rgba(29, 42, 47, 0.03) 1px,
+          transparent 1px,
+          transparent 24px
+        ),
+        var(--paper);
+      border: 1px solid rgba(88, 101, 106, 0.24);
+      border-radius: 28px;
+      box-shadow: 0 22px 50px var(--shadow);
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(47, 133, 117, 0.16);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .stamp,
+    .ready {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(88, 101, 106, 0.16);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .ready {
+      background: rgba(47, 133, 117, 0.12);
+      color: var(--accent-2);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 22px;
+    }
+
+    .title {
+      margin: 0 0 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 5vw, 48px);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 54ch;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(223, 107, 63, 0.18);
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .profile-card {
+      padding: 22px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(239, 228, 209, 0.86));
+      border: 1px solid rgba(88, 101, 106, 0.12);
+      position: relative;
+    }
+
+    .profile-card::before {
+      content: "Player Card";
+      position: absolute;
+      top: -12px;
+      left: 18px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff8ef;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .player-name {
+      margin: 8px 0 4px;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .player-role {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .meta-box {
+      padding: 12px;
+      border-radius: 16px;
+      background: var(--panel);
+      border: 1px solid rgba(88, 101, 106, 0.12);
+    }
+
+    .meta-label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .meta-value {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .skills {
+      display: grid;
+      gap: 12px;
+    }
+
+    .skill-row {
+      display: grid;
+      gap: 6px;
+    }
+
+    .skill-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .skill-head strong {
+      font-weight: 700;
+    }
+
+    .skill-bar {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(88, 101, 106, 0.12);
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: var(--accent);
+    }
+
+    .body-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      margin-top: 8px;
+    }
+
+    .letter,
+    .match {
+      padding: 24px;
+      border-radius: 22px;
+      border: 1px solid rgba(88, 101, 106, 0.12);
+      background: rgba(255, 252, 247, 0.84);
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(223, 107, 63, 0.12);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .letter p {
+      margin: 0 0 16px;
+      color: #223136;
+      font-size: 16px;
+      line-height: 1.62;
+    }
+
+    .signature {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(88, 101, 106, 0.16);
+    }
+
+    .signature strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 18px;
+    }
+
+    .signature .links {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .signature .links a {
+      color: var(--accent-2);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .signature .links a:hover {
+      text-decoration: underline;
+    }
+
+    .signature .links .dot {
+      margin: 0 8px;
+      color: var(--muted);
+    }
+
+    .match-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .match-item {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 12px;
+      border-radius: 16px;
+      background: var(--panel);
+      border: 1px solid rgba(88, 101, 106, 0.12);
+    }
+
+    .match-icon {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(160deg, rgba(223, 107, 63, 0.16), rgba(47, 133, 117, 0.16));
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .match-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .match-item span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-top: 24px;
+      padding: 0 4px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer strong {
+      color: var(--ink);
+    }
+
+    .print-note {
+      margin-top: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @page {
+      size: A4;
+      margin: 10mm;
+    }
+
+    @media (max-width: 860px) {
+      body {
+        padding: 14px;
+      }
+
+      .page {
+        padding: 24px;
+      }
+
+      .hero,
+      .body-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar,
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: white;
+      }
+
+      .page {
+        width: auto;
+        min-height: auto;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        border: 0;
+      }
+
+      .print-note {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <div class="stamp">SneakyBox Candidate Build</div>
+      <div class="ready">Quest Status: Ready to Connect</div>
+    </div>
+
+    <section class="hero">
+      <div>
+        <h1 class="title">Cover Letter<br />Joao Pasqualini Costa</h1>
+        <p class="subtitle">
+          A networking engineer who fell in love with MMOs and ended up building them. C++, Lua, TCP and, lately, C# and Unity with PurrNet.
+        </p>
+
+        <div class="tags">
+          <span class="tag">MMO netcode</span>
+          <span class="tag">C++ & Lua</span>
+          <span class="tag">TCP / client-server</span>
+          <span class="tag">C# + Unity + PurrNet</span>
+          <span class="tag">Latency tuning</span>
+        </div>
+      </div>
+
+      <aside class="profile-card">
+        <p class="player-name">Joao Pasqualini Costa</p>
+        <p class="player-role">Networking Engineer | Game Developer</p>
+
+        <div class="meta">
+          <div class="meta-box">
+            <span class="meta-label">Main Build</span>
+            <span class="meta-value">Netcode + Engines + Delivery</span>
+          </div>
+          <div class="meta-box">
+            <span class="meta-label">Languages</span>
+            <span class="meta-value">EN | PT | ES</span>
+          </div>
+          <div class="meta-box">
+            <span class="meta-label">MMOs shipped on</span>
+            <span class="meta-value">Ravendawn, Grandline, Drakantos</span>
+          </div>
+          <div class="meta-box">
+            <span class="meta-label">Setup</span>
+            <span class="meta-value">Fully remote ready</span>
+          </div>
+        </div>
+
+        <div class="skills">
+          <div class="skill-row">
+            <div class="skill-head"><strong>MMO netcode (TCP)</strong><span>90%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-head"><strong>MMO PurrNet (UDP) RPCs</strong><span>85%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-head"><strong>C++ & Lua</strong><span>90%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-head"><strong>C# + Unity</strong><span>85%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-head"><strong>Latency & sync tuning</strong><span>88%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 88%"></div></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="body-grid">
+      <article class="letter">
+        <span class="section-kicker">Message</span>
+        <p>
+          Hi SneakyBox team. I grew up loving MMOs, and somewhere along the way I stopped just playing them and started building them. Networking is the part I love the most: that small moment of magic when what one player does shows up on everyone else's screen, fast and exactly right. When it works, no one notices. That is the part I care about getting right.
+        </p>
+        <p>
+          I have worked on real MMOs that people actually play, like Ravendawn, Grandline Adventures and Drakantos. Most of that work was deep in the netcode: server and client talking over TCP, written in C++ and Lua, with all the real trade-offs of latency, bandwidth and keeping the game world in sync. Those projects taught me how multiplayer behaves when it leaves a clean test setup and meets thousands of players.
+        </p>
+        <p>
+          Right now I am building my own game in C# and Unity, using PurrNet for the networking, and I am loving it. It keeps me close to the same questions you face every day, just from a different angle. I would love to bring that to SneakyBox, learn your platforms and services, and help make games that feel smooth no matter where someone is playing. Networking is what I would happily do for the rest of my career, and your team feels like the right place to do it.
+        </p>
+
+        <div class="signature">
+          <strong>Joao Pasqualini Costa</strong>
+          <span>joao_pc23@hotmail.com | Sao Paulo, Brazil | Remote</span>
+          <span class="links">
+            <a href="https://conde2.github.io/portfolio/" target="_blank" rel="noopener">Portfolio</a>
+            <span class="dot">&middot;</span>
+            <a href="https://www.linkedin.com/in/joao-pasqualini-costa-9908051a0/" target="_blank" rel="noopener">LinkedIn</a>
+            <span class="dot">&middot;</span>
+            <a href="https://github.com/conde2/" target="_blank" rel="noopener">GitHub</a>
+          </span>
+        </div>
+      </article>
+
+      <aside class="match">
+        <span class="section-kicker">Quick Match</span>
+        <ul class="match-list">
+          <li class="match-item">
+            <div class="match-icon">01</div>
+            <div>
+              <strong>Real MMO experience</strong>
+              <span>Netcode work on Ravendawn, Grandline Adventures and Drakantos, games with real players online.</span>
+            </div>
+          </li>
+          <li class="match-item">
+            <div class="match-icon">02</div>
+            <div>
+              <strong>C++, Lua and TCP</strong>
+              <span>Server-client communication over TCP, handling latency, bandwidth and world sync in production.</span>
+            </div>
+          </li>
+          <li class="match-item">
+            <div class="match-icon">03</div>
+            <div>
+              <strong>C# + Unity + PurrNet</strong>
+              <span>Building my own multiplayer game right now, so I stay hands-on with modern netcode every day.</span>
+            </div>
+          </li>
+          <li class="match-item">
+            <div class="match-icon">04</div>
+            <div>
+              <strong>In it for the long run</strong>
+              <span>Networking is the work I love most, and I am eager to learn your platforms and services.</span>
+            </div>
+          </li>
+        </ul>
+      </aside>
+    </section>
+
+  </main>
+
+  <p class="print-note">Tip: in your browser, press Ctrl+P and save as PDF. The layout is already tuned for A4.</p>
+</body>
+</html>
