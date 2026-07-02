@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joao Pasqualini Costa - Senior C++ Engineer | Systems &amp; Distributed Backends</title>
+  <meta name="robots" content="noindex" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+
+    html.dark body {
+      background-color: #050505;
+      color: #f8fafc;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #e2e8f0;
+    }
+
+    html.dark ::-webkit-scrollbar-track {
+      background: #1e293b;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #3b82f6;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #2563eb;
+    }
+
+    h2 {
+      margin-bottom: 0 !important;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      main {
+        padding: 0px !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+
+      .print-break-inside-avoid {
+        break-inside: avoid;
+      }
+
+      .no-mb {
+        margin-bottom: 0 !important;
+      }
+
+      .no-margin {
+        margin: 0 !important;
+      }
+
+      @page {
+        margin: 1cm;
+      }
+
+      .border {
+        border: 0 !important
+      }
+
+      footer {
+        background: none !important;
+      }
+
+      /* Remove the light-gray page background so cards don't sit on a gray band */
+      body>div {
+        background-color: #ffffff !important;
+      }
+
+      /* Tighten the header so the Experience section pulls up */
+      .cv-header {
+        margin-bottom: 0.75rem !important;
+        padding: 1.25rem 1.5rem !important;
+      }
+
+      /* Print-only section reorder: Experience, Education, Skills, Highlights, Links */
+      .cv-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem;
+        align-items: stretch !important;
+      }
+
+      .cv-experience {
+        order: 1;
+      }
+
+      .cv-education {
+        order: 2;
+      }
+
+      .cv-side {
+        order: 3;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem;
+      }
+
+      .cv-side > * {
+        order: 3;
+        margin-top: 0 !important;
+      }
+
+      .cv-skills {
+        order: 1;
+      }
+
+      .cv-highlights {
+        order: 2;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div
+    class="bg-[#f8fafc] text-slate-800 dark:bg-[#050505] dark:text-slate-300 min-h-screen selection:bg-purple-600 selection:text-white font-['Inter'] transition-colors duration-300">
+
+    <!-- Fixed header: language pills + theme + save pdf -->
+    <header
+      class="fixed top-0 left-0 right-0 h-16 z-40 print:hidden flex items-center justify-center gap-3 md:gap-4 px-4 bg-inherit bg-opacity-80 backdrop-blur-md border-b border-slate-200 dark:border-[#222]">
+      <div
+        class="bg-white border-slate-200 shadow-sm dark:bg-[#121212] dark:border-[#222] dark:shadow-none flex items-center border rounded-full overflow-hidden p-0.5">
+        <button id="btn-pt" onclick="setLang('pt')"
+          class="px-3 py-1 rounded-full text-[10px] md:text-xs font-bold transition-all text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300">PT</button>
+        <button id="btn-en" onclick="setLang('en')"
+          class="px-3 py-1 rounded-full text-[10px] md:text-xs font-bold transition-all bg-purple-600 dark:bg-purple-700 text-white">EN</button>
+      </div>
+      <button onclick="toggleTheme()" aria-label="Toggle theme"
+        class="bg-white border-slate-200 shadow-sm dark:bg-[#121212] dark:border-[#222] dark:shadow-none border rounded-full p-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="hidden dark:block">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2" />
+          <path d="M12 20v2" />
+          <path d="m4.93 4.93 1.41 1.41" />
+          <path d="m17.66 17.66 1.41 1.41" />
+          <path d="M2 12h2" />
+          <path d="M20 12h2" />
+          <path d="m6.34 17.66-1.41 1.41" />
+          <path d="m19.07 4.93-1.41 1.41" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="block dark:hidden">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+        </svg>
+      </button>
+      <button onclick="window.print()"
+        class="bg-slate-900 hover:bg-slate-800 dark:bg-purple-700 dark:hover:bg-purple-500 flex items-center gap-2 px-3 md:px-4 py-1.5 text-white border-none rounded-full text-[10px] md:text-xs font-bold transition-all shadow-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+          <path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6" />
+          <rect x="6" y="14" width="12" height="8" rx="1" />
+        </svg>
+        <span id="savePdfLabel">SAVE PDF</span>
+      </button>
+    </header>
+
+    <!-- ==================== EN ==================== -->
+    <main id="content-en" class="max-w-[1200px] mx-auto px-4 py-24 md:py-24">
+
+      <!-- Header card -->
+      <div
+        class="bg-white border-slate-200 dark:bg-[#121212] dark:border-[#222] mb-8 p-8 rounded-lg border shadow-xl print:shadow-none print:border-slate-300 cv-header">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+          <div>
+            <h1 class="text-purple-700 dark:text-purple-600 text-3xl font-black uppercase tracking-tighter">JOAO
+              PASQUALINI COSTA</h1>
+            <div class="flex items-center gap-2">
+              <span
+                class="text-slate-800 dark:text-slate-300 font-bold text-sm tracking-widest">joao_pc23@hotmail.com</span>
+              <span class="text-slate-400">|</span>
+              <p class="text-slate-500 font-mono text-xs italic">Senior C++ Engineer — Low-Latency &amp; Distributed
+                Systems</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-sm whitespace-nowrap"><span class="text-slate-800 dark:text-slate-300 font-bold">São Paulo,
+                Brazil</span> <span class="text-slate-500">· Remote, working globally</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start cv-grid">
+
+        <!-- Left column: EDUCATION -->
+        <div class="lg:col-span-7 space-y-6 cv-education">
+          <div
+            class="bg-white border-slate-200 dark:bg-[#121212] dark:border-[#222] border p-6 rounded-lg shadow-xl print:shadow-none print:border-slate-300">
+            <h2
+              class="text-purple-700 border-slate-100 dark:text-[#fbbf24] dark:border-[#222] font-black tracking-widest text-xs uppercase mb-6 border-b pb-2 flex items-center gap-2 no-mb">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+                <path d="M22 10v6" />
+                <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+              </svg>
+              EDUCATION
+            </h2>
+            <div class="divide-y divide-slate-100 dark:divide-[#222]">
+
+              <div class="border-slate-100 dark:border-[#222] border-b py-6 last:border-0 group print:py-4">
+                <div class="flex justify-between items-start mb-1">
+                  <h3
+                    class="text-slate-900 dark:text-white font-bold text-base group-hover:text-purple-600 transition-colors no-mb">
+                    B.E. Computer Engineering</h3>
+                  <span class="text-[10px] text-slate-500 font-mono italic whitespace-nowrap ml-4">São Carlos,
+                    Brazil</span>
+                </div>
+                <p class="text-purple-600 dark:text-purple-500 text-[11px] uppercase tracking-wider font-bold mb-3">
+                  Universidade Federal de São Carlos (UFSCar)</p>
+                <ul class="space-y-1 mb-4">
+                  <li class="text-slate-600 dark:text-slate-400 text-[12px] flex gap-2 leading-tight"><span
+                      class="text-purple-600">✧</span> Bachelor of Engineering degree in Computer Engineering</li>
+                </ul>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="bg-purple-50 border-purple-100 text-purple-700 dark:bg-purple-950/20 dark:border-purple-900/40 dark:text-purple-300 px-2 py-1 border text-[9px] rounded uppercase font-bold tracking-tight print:bg-slate-50 print:text-slate-700 print:border-slate-200">Computer
+                    Engineering</span>
+                </div>
+              </div>
+
+              <div class="border-slate-100 dark:border-[#222] border-b py-6 last:border-0 group print:py-4">
+                <div class="flex justify-between items-start mb-1">
+                  <h3
+                    class="text-slate-900 dark:text-white font-bold text-base group-hover:text-purple-600 transition-colors no-mb">
+                    Computer Games &amp; Programming</h3>
+                  <span class="text-[10px] text-slate-500 font-mono italic whitespace-nowrap ml-4">Bristol, UK</span>
+                </div>
+                <p class="text-purple-600 dark:text-purple-500 text-[11px] uppercase tracking-wider font-bold mb-3">
+                  University of the West of England</p>
+                <ul class="space-y-1 mb-4">
+                  <li class="text-slate-600 dark:text-slate-400 text-[12px] flex gap-2 leading-tight"><span
+                      class="text-purple-600">✧</span> Games &amp; programming studies in Bristol, UK</li>
+                </ul>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="bg-purple-50 border-purple-100 text-purple-700 dark:bg-purple-950/20 dark:border-purple-900/40 dark:text-purple-300 px-2 py-1 border text-[9px] rounded uppercase font-bold tracking-tight print:bg-slate-50 print:text-slate-700 print:border-slate-200">Game
+                    Development</span>
+                  <span
+                    class="bg-purple-50 border-purple-100 text-purple-700 dark:bg-purple-950/20 dark:border-purple-900/40 dark:text-purple-300 px-2 py-1 border text-[9px] rounded uppercase font-bold tracking-tight print:bg-slate-50 print:text-slate-700 print:border-slate-200">Programming</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column: links + skills + highlights -->
+        <div class="lg:col-span-5 space-y-6 cv-side">
+
+          <div
+            class="bg-white border-slate-200 hover:border-blue-400 dark:bg-[#121212] dark:border-[#222] dark:hover:border-blue-500 p-4 border rounded-lg flex items-center justify-between group cursor-pointer transition-colors shadow-lg print:shadow-none print:border-slate-300"
+            onclick="window.open('index.html','_blank')">
+            <div class="flex items-center gap-3">
+              <div
+                class="bg-blue-50 text-blue-600 dark:bg-blue-950/20 dark:text-blue-400 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                  <rect width="20" height="14" x="2" y="6" rx="2" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-slate-800 dark:text-slate-200 text-xs font-bold">Portfolio</h4>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest">games &amp; projects</p>
+              </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-slate-400 group-hover:text-blue-600 transition-colors">
+              <path d="M15 3h6v6" />
+              <path d="M10 14 21 3" />
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            </svg>
+          </div>
+
+          <div
+            class="bg-white border-slate-200 hover:border-blue-400 dark:bg-[#121212] dark:border-[#222] dark:hover:border-blue-500 p-4 border rounded-lg flex items-center justify-between group cursor-pointer transition-colors shadow-lg print:shadow-none print:border-slate-300"
+            onclick="window.open('https://www.linkedin.com/in/joao-pasqualini-costa-9908051a0/','_blank')">
+            <div class="flex items-center gap-3">
+              <div
+                class="bg-blue-50 text-blue-600 dark:bg-blue-950/20 dark:text-blue-400 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect width="4" height="12" x="2" y="9" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-slate-800 dark:text-slate-200 text-xs font-bold">Linkedin</h4>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest">@joao-pasqualini-costa</p>
+              </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-slate-400 group-hover:text-blue-600 transition-colors">
+              <path d="M15 3h6v6" />
+              <path d="M10 14 21 3" />
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            </svg>
+          </div>
+
+          <div
+            class="bg-white border-slate-200 hover:border-blue-400 dark:bg-[#121212] dark:border-[#222] dark:hover:border-blue-500 p-4 border rounded-lg flex items-center justify-between group cursor-pointer transition-colors shadow-lg print:shadow-none print:border-slate-300"
+            onclick="window.open('https://github.com/conde2','_blank')">
+            <div class="flex items-center gap-3">
+              <div
+                class="bg-blue-50 text-blue-600 dark:bg-blue-950/20 dark:text-blue-400 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                  <path d="M9 18c-4.51 2-5-2-7-2" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-slate-800 dark:text-slate-200 text-xs font-bold">GitHub</h4>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest">@conde2</p>
+              </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-slate-400 group-hover:text-blue-600 transition-colors">
+              <path d="M15 3h6v6" />
+              <path d="M10 14 21 3" />
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            </svg>
+          </div>
+
+          <!-- SKILLS -->
+          <div
+            class="bg-white border-slate-200 dark:bg-[#121212] dark:border-[#222] border p-6 rounded-lg shadow-xl print:shadow-none print:border-slate-300 cv-skills">
+            <h2
+              class="text-purple-700 border-slate-100 dark:text-[#fbbf24] dark:border-[#222] font-black tracking-widest text-xs uppercase mb-6 border-b pb-2 flex items-center gap-2 no-mb">
+              SKILLS</h2>
+            <div class="h-[300px] w-full print:h-[250px]">
+              <svg viewBox="0 0 400 300" class="w-full h-full" role="img"
+                aria-label="Skill radar: C++ and Systems 95, Concurrency 90, Networking 92, Distributed Systems 85, Tooling and CI 80">
+                <g fill="none" class="stroke-slate-200 dark:stroke-[#333]">
+                  <polygon points="200,120 228.5,140.7 217.6,174.3 182.4,174.3 171.5,140.7" />
+                  <polygon points="200,90 257.1,131.5 235.3,198.6 164.7,198.6 142.9,131.5" />
+                  <polygon points="200,60 285.6,122.2 252.9,222.8 147.1,222.8 114.4,122.2" />
+                  <polygon points="200,30 314.1,112.9 270.6,247.1 129.4,247.1 85.9,112.9" />
+                  <line x1="200" y1="150" x2="200" y2="30" />
+                  <line x1="200" y1="150" x2="314.1" y2="112.9" />
+                  <line x1="200" y1="150" x2="270.6" y2="247.1" />
+                  <line x1="200" y1="150" x2="129.4" y2="247.1" />
+                  <line x1="200" y1="150" x2="85.9" y2="112.9" />
+                </g>
+                <polygon points="200,36 302.7,116.6 264.9,239.3 140,232.5 108.7,120.3" fill="#9333ea" fill-opacity="0.4"
+                  stroke="#9333ea" />
+                <g font-size="10" font-family="Inter, sans-serif" class="fill-slate-600 dark:fill-[#666]">
+                  <text x="200" y="20" text-anchor="middle">C++ &amp; Systems</text>
+                  <text x="322" y="113" text-anchor="start">Concurrency</text>
+                  <text x="277" y="258" text-anchor="start">Networking</text>
+                  <text x="123" y="258" text-anchor="end">Distributed Systems</text>
+                  <text x="78" y="113" text-anchor="end">Tooling &amp; CI</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- HIGHLIGHTS -->
+          <div
+            class="bg-white border-slate-200 dark:bg-[#121212] dark:border-[#222] border p-6 rounded-lg shadow-xl print:shadow-none print:border-slate-300 cv-highlights">
+            <h2
+              class="text-purple-700 border-slate-100 dark:text-[#fbbf24] dark:border-[#222] font-black tracking-widest text-xs uppercase mb-6 border-b pb-2 flex items-center gap-2 no-mb">
+              HIGHLIGHTS</h2>
+            <div class="space-y-4 pt-4">
+              <div
+                class="flex justify-between items-center text-xs border-b pb-2 border-slate-50 dark:border-[#1a1a1a]">
+                <span class="text-slate-500 text-[10px] uppercase tracking-widest">Years Shipping Games</span>
+                <span class="font-bold text-blue-600 dark:text-blue-400">10+</span>
+              </div>
+              <div
+                class="flex justify-between items-center text-xs border-b pb-2 border-slate-50 dark:border-[#1a1a1a]">
+                <span class="text-slate-500 text-[10px] uppercase tracking-widest">Live Titles Contributed</span>
+                <span class="font-bold text-blue-600 dark:text-blue-400">4</span>
+              </div>
+              <div
+                class="flex justify-between items-center text-xs border-b pb-2 border-slate-50 dark:border-[#1a1a1a]">
+                <span class="text-slate-500 text-[10px] uppercase tracking-widest">Core Stack</span>
+                <span class="font-bold text-amber-600 dark:text-amber-300">C++ · C# · Lua</span>
+              </div>
+              <div
+                class="flex justify-between items-center text-xs border-b pb-2 border-slate-50 dark:border-[#1a1a1a]">
+                <span class="text-slate-500 text-[10px] uppercase tracking-widest">Data &amp; Infrastructure</span>
+                <span class="font-bold text-blue-600 dark:text-blue-400">Redis · MySQL · CI/CD</span>
+              </div>
+              <div
+                class="flex justify-between items-center text-xs border-b pb-2 border-slate-50 dark:border-[#1a1a1a]">
+                <span class="text-slate-500 text-[10px] uppercase tracking-widest">Availability</span>
+                <span class="font-bold text-blue-600 dark:text-blue-400">Remote · Global</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXPERIENCE -->
+        <div class="lg:col-span-12 cv-experience">
+          <div
+            class="bg-white border-slate-200 dark:bg-[#121212] dark:border-[#222] border p-6 rounded-lg shadow-xl print:shadow-none print:border-slate-300">
+            <h2
+              class="text-purple-700 border-slate-100 dark:text-[#fbbf24] dark:border-[#222] font-black tracking-widest text-xs uppercase mb-6 border-b pb-2 flex items-center gap-2 no-mb">
+              EXPERIENCE</h2>
+            <div class="divide-y divide-slate-100 dark:divide-[#222]">
+
+              <!-- Turing -->
+              <div
+                class="border-slate-100 dark:border-[#222] border-b py-8 last:border-0 group print:py-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                  <div class="md:w-1/4">
+                    <h3 class="text-slate-900 dark:text-white font-bold text-lg">Turing</h3>
+                    <p class="text-purple-700 dark:text-purple-500 text-sm font-mono mb-2">Senior AI Software Engineer
+                    </p>
+                    <p class="text-slate-500 text-xs italic">Feb 2025 — Present</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">AI
+                        Tooling</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Python</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Automation</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Prototyping</span>
+                    </div>
+                  </div>
+                  <div class="md:w-3/4 space-y-4">
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Designing AI-powered tools
+                      that accelerate game development, training systems and production workflows.</p>
+                    <div>
+                      <h4
+                        class="text-purple-700 dark:text-[#fbbf24] text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Responsibilities</h4>
+                      <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Building AI-powered developer tools for game production
+                          workflows.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Automating pipelines and data-driven processes.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Rapid prototyping of tooling and workflow optimizations.
+                        </li>
+                      </ul>
+                    </div>
+                    <div
+                      class="bg-emerald-50/30 border-emerald-100 dark:bg-slate-900/30 dark:border-[#222] p-4 rounded-lg border print:bg-emerald-50/10">
+                      <h4
+                        class="text-emerald-700 dark:text-emerald-500 text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Impact</h4>
+                      <ul class="space-y-1">
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> AI tooling that accelerates game development and
+                          production workflows.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- The Last Magic -->
+              <div
+                class="border-slate-100 dark:border-[#222] border-b py-8 last:border-0 group print:py-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                  <div class="md:w-1/4">
+                    <h3 class="text-slate-900 dark:text-white font-bold text-lg">The Last Magic</h3>
+                    <p class="text-purple-700 dark:text-purple-500 text-sm font-mono mb-2">Founder &amp; Lead Engineer
+                    </p>
+                    <p class="text-slate-500 text-xs italic">Nov 2023 — Present</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">C++</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">C#</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Lua</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">UDP</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Redis</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Unity</span>
+                    </div>
+                  </div>
+                  <div class="md:w-3/4 space-y-4">
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Building an original online
+                      sandbox RPG end to end, an architecture designed to be fast, modular, scalable and responsive even
+                      under heavy load.</p>
+                    <div>
+                      <h4
+                        class="text-purple-700 dark:text-[#fbbf24] text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Responsibilities</h4>
+                      <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Engineering a custom C# gateway with UDP networking via
+                          PurrNet.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Gateway also acts as a load balancer, tracking live user
+                          counts and running health checks across game servers.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Real-time data synchronization across servers with Redis.
+                        </li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Started on Godot with a C++ backend and Lua; migrated fully
+                          to Unity (C#).</li>
+                      </ul>
+                    </div>
+                    <div
+                      class="bg-emerald-50/30 border-emerald-100 dark:bg-slate-900/30 dark:border-[#222] p-4 rounded-lg border print:bg-emerald-50/10">
+                      <h4
+                        class="text-emerald-700 dark:text-emerald-500 text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Impact</h4>
+                      <ul class="space-y-1">
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Architecture stays responsive even under heavy load.</li>
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Open-source contributor to PurrNet (UDP networking
+                          library).</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tavernlight -->
+              <div
+                class="border-slate-100 dark:border-[#222] border-b py-8 last:border-0 group print:py-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                  <div class="md:w-1/4">
+                    <h3 class="text-slate-900 dark:text-white font-bold text-lg">Tavernlight Games</h3>
+                    <p class="text-purple-700 dark:text-purple-500 text-sm font-mono mb-2">Senior Software Engineer</p>
+                    <p class="text-slate-500 text-xs italic">Mar 2022 — Nov 2023</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">C++</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Lua</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Redis</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">MySQL</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Networking</span>
+                    </div>
+                  </div>
+                  <div class="md:w-3/4 space-y-4">
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Client and server engineering
+                      on Ravendawn / RavenQuest. Live MMORPGs where low latency, performance and reliability directly
+                      affect thousands of concurrent players.</p>
+                    <div>
+                      <h4
+                        class="text-purple-700 dark:text-[#fbbf24] text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Responsibilities</h4>
+                      <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Contributing to both client and server codebases in C++ and
+                          Lua.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Integrating Redis for caching and distributed data.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Reworking core data structures to eliminate performance
+                          bottlenecks.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Building a modular, event-driven architecture with Lua
+                          scripting environments.</li>
+                      </ul>
+                    </div>
+                    <div
+                      class="bg-emerald-50/30 border-emerald-100 dark:bg-slate-900/30 dark:border-[#222] p-4 rounded-lg border print:bg-emerald-50/10">
+                      <h4
+                        class="text-emerald-700 dark:text-emerald-500 text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Impact</h4>
+                      <ul class="space-y-1">
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Improved network efficiency across the client–server
+                          protocol.</li>
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Shipped new gameplay and UI/UX features to a live player
+                          base.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ZPiano -->
+              <div
+                class="border-slate-100 dark:border-[#222] border-b py-8 last:border-0 group print:py-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                  <div class="md:w-1/4">
+                    <h3 class="text-slate-900 dark:text-white font-bold text-lg">ZPiano</h3>
+                    <p class="text-purple-700 dark:text-purple-500 text-sm font-mono mb-2">Founder</p>
+                    <p class="text-slate-500 text-xs italic">Apr 2020 — Mar 2022</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Angular</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Firebase</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Serverless</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">CI/CD</span>
+                    </div>
+                  </div>
+                  <div class="md:w-3/4 space-y-4">
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Founded and built a modular
+                      web product end to end, with cloud-native infrastructure.</p>
+                    <div>
+                      <h4
+                        class="text-purple-700 dark:text-[#fbbf24] text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Responsibilities</h4>
+                      <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Modular web app built with Angular, Ionic and Firebase.
+                        </li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Serverless functions with Stripe and Algolia integrations.
+                        </li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> PWA + SSR with CI/CD via GitHub Actions.</li>
+                      </ul>
+                    </div>
+                    <div
+                      class="bg-emerald-50/30 border-emerald-100 dark:bg-slate-900/30 dark:border-[#222] p-4 rounded-lg border print:bg-emerald-50/10">
+                      <h4
+                        class="text-emerald-700 dark:text-emerald-500 text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Impact</h4>
+                      <ul class="space-y-1">
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Shipped a production PWA with automated CI/CD pipelines.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Wingeon -->
+              <div
+                class="border-slate-100 dark:border-[#222] border-b py-8 last:border-0 group print:py-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                  <div class="md:w-1/4">
+                    <h3 class="text-slate-900 dark:text-white font-bold text-lg">Wingeon Game Studios</h3>
+                    <p class="text-purple-700 dark:text-purple-500 text-sm font-mono mb-2">Full Stack Engineer</p>
+                    <p class="text-slate-500 text-xs italic">Jan 2018 — Jul 2021</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">C++</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Lua</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Redis</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">MySQL</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Grafana</span>
+                    </div>
+                  </div>
+                  <div class="md:w-3/4 space-y-4">
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Distributed gameplay systems
+                      for Grand Line Adventures. A live MMORPG running across multiple servers with real-time state
+                      synchronization.</p>
+                    <div>
+                      <h4
+                        class="text-purple-700 dark:text-[#fbbf24] text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Responsibilities</h4>
+                      <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Built scalable game systems. Tournaments, alliances,
+                          in-game events and chat, across multiple servers.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Distributed real-time synchronization with Redis + Lua.
+                        </li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Fixed database bottlenecks by introducing request
+                          caching.</li>
+                      </ul>
+                    </div>
+                    <div
+                      class="bg-emerald-50/30 border-emerald-100 dark:bg-slate-900/30 dark:border-[#222] p-4 rounded-lg border print:bg-emerald-50/10">
+                      <h4
+                        class="text-emerald-700 dark:text-emerald-500 text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Impact</h4>
+                      <ul class="space-y-1">
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Cut bandwidth by refining client–server communications.
+                        </li>
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Tracked live production error and game analytics with
+                          Grafana.</li>
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Led a small team using Agile workflows.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PlayWest -->
+              <div
+                class="border-slate-100 dark:border-[#222] border-b py-8 last:border-0 group print:py-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                  <div class="md:w-1/4">
+                    <h3 class="text-slate-900 dark:text-white font-bold text-lg">PlayWest</h3>
+                    <p class="text-purple-700 dark:text-purple-500 text-sm font-mono mb-2">Unity Developer (Intern)</p>
+                    <p class="text-slate-500 text-xs italic">2016 · Bristol, UK</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Unity</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">C#</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Android</span>
+                    </div>
+                  </div>
+                  <div class="md:w-3/4 space-y-4">
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Unity/C# prototype work for
+                      real-world emergency response.</p>
+                    <div>
+                      <h4
+                        class="text-purple-700 dark:text-[#fbbf24] text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Responsibilities</h4>
+                      <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Built a Unity/C# Android prototype for the RNLI to locate
+                          the nearest available volunteers during emergencies.</li>
+                      </ul>
+                    </div>
+                    <div
+                      class="bg-emerald-50/30 border-emerald-100 dark:bg-slate-900/30 dark:border-[#222] p-4 rounded-lg border print:bg-emerald-50/10">
+                      <h4
+                        class="text-emerald-700 dark:text-emerald-500 text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Impact</h4>
+                      <ul class="space-y-1">
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Delivered a working prototype for the RNLI (Royal National
+                          Lifeboat Institution).</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer
+        class="mt-20 border-t border-slate-200 dark:border-[#222] pt-12 text-center text-[10px] text-slate-500 tracking-[0.4em] uppercase font-mono pb-12 print:mt-10 print:pt-6">
+        Joao Pasqualini Costa - Senior C++ Engineer | Systems &amp; Distributed Backends</footer>
+    </main>
+
+    <!-- ==================== PT ==================== -->
+    <main id="content-pt" class="max-w-[1200px] mx-auto px-4 py-24 md:py-24 hidden">
+
+      <!-- Cabeçalho -->
+      <div
+        class="bg-white border-slate-200 dark:bg-[#121212] dark:border-[#222] mb-8 p-8 rounded-lg border shadow-xl print:shadow-none print:border-slate-300 cv-header">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+          <div>
+            <h1 class="text-purple-700 dark:text-purple-600 text-3xl font-black uppercase tracking-tighter">JOAO
+              PASQUALINI COSTA</h1>
+            <div class="flex items-center gap-2">
+              <span
+                class="text-slate-800 dark:text-slate-300 font-bold text-sm tracking-widest">joao_pc23@hotmail.com</span>
+              <span class="text-slate-400">|</span>
+              <p class="text-slate-500 font-mono text-xs italic">Engenheiro C++ Sênior — Baixa Latência &amp; Sistemas
+                Distribuídos</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-sm whitespace-nowrap"><span class="text-slate-800 dark:text-slate-300 font-bold">São Paulo,
+                Brasil</span> <span class="text-slate-500">· Remoto, atuação global</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start cv-grid">
+
+        <!-- Coluna esquerda: FORMAÇÃO -->
+        <div class="lg:col-span-7 space-y-6 cv-education">
+          <div
+            class="bg-white border-slate-200 dark:bg-[#121212] dark:border-[#222] border p-6 rounded-lg shadow-xl print:shadow-none print:border-slate-300">
+            <h2
+              class="text-purple-700 border-slate-100 dark:text-[#fbbf24] dark:border-[#222] font-black tracking-widest text-xs uppercase mb-6 border-b pb-2 flex items-center gap-2 no-mb">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+                <path d="M22 10v6" />
+                <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+              </svg>
+              FORMAÇÃO
+            </h2>
+            <div class="divide-y divide-slate-100 dark:divide-[#222]">
+
+              <div class="border-slate-100 dark:border-[#222] border-b py-6 last:border-0 group print:py-4">
+                <div class="flex justify-between items-start mb-1">
+                  <h3
+                    class="text-slate-900 dark:text-white font-bold text-base group-hover:text-purple-600 transition-colors no-mb">
+                    Bacharelado em Engenharia de Computação</h3>
+                  <span class="text-[10px] text-slate-500 font-mono italic whitespace-nowrap ml-4">São Carlos,
+                    Brasil</span>
+                </div>
+                <p class="text-purple-600 dark:text-purple-500 text-[11px] uppercase tracking-wider font-bold mb-3">
+                  Universidade Federal de São Carlos (UFSCar)</p>
+                <ul class="space-y-1 mb-4">
+                  <li class="text-slate-600 dark:text-slate-400 text-[12px] flex gap-2 leading-tight"><span
+                      class="text-purple-600">✧</span> Graduação em Engenharia de Computação (B.E.)</li>
+                </ul>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="bg-purple-50 border-purple-100 text-purple-700 dark:bg-purple-950/20 dark:border-purple-900/40 dark:text-purple-300 px-2 py-1 border text-[9px] rounded uppercase font-bold tracking-tight print:bg-slate-50 print:text-slate-700 print:border-slate-200">Engenharia
+                    de Computação</span>
+                </div>
+              </div>
+
+              <div class="border-slate-100 dark:border-[#222] border-b py-6 last:border-0 group print:py-4">
+                <div class="flex justify-between items-start mb-1">
+                  <h3
+                    class="text-slate-900 dark:text-white font-bold text-base group-hover:text-purple-600 transition-colors no-mb">
+                    Computer Games &amp; Programming</h3>
+                  <span class="text-[10px] text-slate-500 font-mono italic whitespace-nowrap ml-4">Bristol, Reino
+                    Unido</span>
+                </div>
+                <p class="text-purple-600 dark:text-purple-500 text-[11px] uppercase tracking-wider font-bold mb-3">
+                  University of the West of England</p>
+                <ul class="space-y-1 mb-4">
+                  <li class="text-slate-600 dark:text-slate-400 text-[12px] flex gap-2 leading-tight"><span
+                      class="text-purple-600">✧</span> Estudos de jogos e programação em Bristol, Reino Unido</li>
+                </ul>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="bg-purple-50 border-purple-100 text-purple-700 dark:bg-purple-950/20 dark:border-purple-900/40 dark:text-purple-300 px-2 py-1 border text-[9px] rounded uppercase font-bold tracking-tight print:bg-slate-50 print:text-slate-700 print:border-slate-200">Desenvolvimento
+                    de Jogos</span>
+                  <span
+                    class="bg-purple-50 border-purple-100 text-purple-700 dark:bg-purple-950/20 dark:border-purple-900/40 dark:text-purple-300 px-2 py-1 border text-[9px] rounded uppercase font-bold tracking-tight print:bg-slate-50 print:text-slate-700 print:border-slate-200">Programação</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Coluna direita -->
+        <div class="lg:col-span-5 space-y-6 cv-side">
+
+          <div
+            class="bg-white border-slate-200 hover:border-blue-400 dark:bg-[#121212] dark:border-[#222] dark:hover:border-blue-500 p-4 border rounded-lg flex items-center justify-between group cursor-pointer transition-colors shadow-lg print:shadow-none print:border-slate-300"
+            onclick="window.open('index.html','_blank')">
+            <div class="flex items-center gap-3">
+              <div
+                class="bg-blue-50 text-blue-600 dark:bg-blue-950/20 dark:text-blue-400 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                  <rect width="20" height="14" x="2" y="6" rx="2" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-slate-800 dark:text-slate-200 text-xs font-bold">Portfólio</h4>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest">jogos &amp; projetos</p>
+              </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-slate-400 group-hover:text-blue-600 transition-colors">
+              <path d="M15 3h6v6" />
+              <path d="M10 14 21 3" />
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            </svg>
+          </div>
+
+          <div
+            class="bg-white border-slate-200 hover:border-blue-400 dark:bg-[#121212] dark:border-[#222] dark:hover:border-blue-500 p-4 border rounded-lg flex items-center justify-between group cursor-pointer transition-colors shadow-lg print:shadow-none print:border-slate-300"
+            onclick="window.open('https://www.linkedin.com/in/joao-pasqualini-costa-9908051a0/','_blank')">
+            <div class="flex items-center gap-3">
+              <div
+                class="bg-blue-50 text-blue-600 dark:bg-blue-950/20 dark:text-blue-400 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect width="4" height="12" x="2" y="9" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-slate-800 dark:text-slate-200 text-xs font-bold">Linkedin</h4>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest">@joao-pasqualini-costa</p>
+              </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-slate-400 group-hover:text-blue-600 transition-colors">
+              <path d="M15 3h6v6" />
+              <path d="M10 14 21 3" />
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            </svg>
+          </div>
+
+          <div
+            class="bg-white border-slate-200 hover:border-blue-400 dark:bg-[#121212] dark:border-[#222] dark:hover:border-blue-500 p-4 border rounded-lg flex items-center justify-between group cursor-pointer transition-colors shadow-lg print:shadow-none print:border-slate-300"
+            onclick="window.open('https://github.com/conde2','_blank')">
+            <div class="flex items-center gap-3">
+              <div
+                class="bg-blue-50 text-blue-600 dark:bg-blue-950/20 dark:text-blue-400 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                  <path d="M9 18c-4.51 2-5-2-7-2" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-slate-800 dark:text-slate-200 text-xs font-bold">GitHub</h4>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest">@conde2</p>
+              </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-slate-400 group-hover:text-blue-600 transition-colors">
+              <path d="M15 3h6v6" />
+              <path d="M10 14 21 3" />
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            </svg>
+          </div>
+
+          <!-- HABILIDADES -->
+          <div
+            class="bg-white border-slate-200 dark:bg-[#121212] dark:border-[#222] border p-6 rounded-lg shadow-xl print:shadow-none print:border-slate-300 cv-skills">
+            <h2
+              class="text-purple-700 border-slate-100 dark:text-[#fbbf24] dark:border-[#222] font-black tracking-widest text-xs uppercase mb-6 border-b pb-2 flex items-center gap-2 no-mb">
+              HABILIDADES</h2>
+            <div class="h-[300px] w-full print:h-[250px]">
+              <svg viewBox="0 0 400 300" class="w-full h-full" role="img"
+                aria-label="Radar de habilidades: C++ e Sistemas 95, Concorrência 90, Redes 92, Sistemas Distribuídos 85, Ferramentas e CI 80">
+                <g fill="none" class="stroke-slate-200 dark:stroke-[#333]">
+                  <polygon points="200,120 228.5,140.7 217.6,174.3 182.4,174.3 171.5,140.7" />
+                  <polygon points="200,90 257.1,131.5 235.3,198.6 164.7,198.6 142.9,131.5" />
+                  <polygon points="200,60 285.6,122.2 252.9,222.8 147.1,222.8 114.4,122.2" />
+                  <polygon points="200,30 314.1,112.9 270.6,247.1 129.4,247.1 85.9,112.9" />
+                  <line x1="200" y1="150" x2="200" y2="30" />
+                  <line x1="200" y1="150" x2="314.1" y2="112.9" />
+                  <line x1="200" y1="150" x2="270.6" y2="247.1" />
+                  <line x1="200" y1="150" x2="129.4" y2="247.1" />
+                  <line x1="200" y1="150" x2="85.9" y2="112.9" />
+                </g>
+                <polygon points="200,36 302.7,116.6 264.9,239.3 140,232.5 108.7,120.3" fill="#9333ea" fill-opacity="0.4"
+                  stroke="#9333ea" />
+                <g font-size="10" font-family="Inter, sans-serif" class="fill-slate-600 dark:fill-[#666]">
+                  <text x="200" y="20" text-anchor="middle">C++ &amp; Sistemas</text>
+                  <text x="322" y="113" text-anchor="start">Concorrência</text>
+                  <text x="277" y="258" text-anchor="start">Redes</text>
+                  <text x="123" y="258" text-anchor="end">Sistemas Distribuídos</text>
+                  <text x="78" y="113" text-anchor="end">Ferramentas &amp; CI</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- DESTAQUES -->
+          <div
+            class="bg-white border-slate-200 dark:bg-[#121212] dark:border-[#222] border p-6 rounded-lg shadow-xl print:shadow-none print:border-slate-300 cv-highlights">
+            <h2
+              class="text-purple-700 border-slate-100 dark:text-[#fbbf24] dark:border-[#222] font-black tracking-widest text-xs uppercase mb-6 border-b pb-2 flex items-center gap-2 no-mb">
+              DESTAQUES</h2>
+            <div class="space-y-4 pt-4">
+              <div
+                class="flex justify-between items-center text-xs border-b pb-2 border-slate-50 dark:border-[#1a1a1a]">
+                <span class="text-slate-500 text-[10px] uppercase tracking-widest">Anos Lançando Jogos</span>
+                <span class="font-bold text-blue-600 dark:text-blue-400">10+</span>
+              </div>
+              <div
+                class="flex justify-between items-center text-xs border-b pb-2 border-slate-50 dark:border-[#1a1a1a]">
+                <span class="text-slate-500 text-[10px] uppercase tracking-widest">Títulos Ao Vivo</span>
+                <span class="font-bold text-blue-600 dark:text-blue-400">4</span>
+              </div>
+              <div
+                class="flex justify-between items-center text-xs border-b pb-2 border-slate-50 dark:border-[#1a1a1a]">
+                <span class="text-slate-500 text-[10px] uppercase tracking-widest">Stack Principal</span>
+                <span class="font-bold text-amber-600 dark:text-amber-300">C++ · C# · Lua</span>
+              </div>
+              <div
+                class="flex justify-between items-center text-xs border-b pb-2 border-slate-50 dark:border-[#1a1a1a]">
+                <span class="text-slate-500 text-[10px] uppercase tracking-widest">Dados &amp; Infraestrutura</span>
+                <span class="font-bold text-blue-600 dark:text-blue-400">Redis · MySQL · CI/CD</span>
+              </div>
+              <div
+                class="flex justify-between items-center text-xs border-b pb-2 border-slate-50 dark:border-[#1a1a1a]">
+                <span class="text-slate-500 text-[10px] uppercase tracking-widest">Disponibilidade</span>
+                <span class="font-bold text-blue-600 dark:text-blue-400">Remoto · Global</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXPERIÊNCIA -->
+        <div class="lg:col-span-12 cv-experience">
+          <div
+            class="bg-white border-slate-200 dark:bg-[#121212] dark:border-[#222] border p-6 rounded-lg shadow-xl print:shadow-none print:border-slate-300">
+            <h2
+              class="text-purple-700 border-slate-100 dark:text-[#fbbf24] dark:border-[#222] font-black tracking-widest text-xs uppercase mb-6 border-b pb-2 flex items-center gap-2 no-mb">
+              EXPERIÊNCIA</h2>
+            <div class="divide-y divide-slate-100 dark:divide-[#222]">
+
+              <!-- Turing -->
+              <div
+                class="border-slate-100 dark:border-[#222] border-b py-8 last:border-0 group print:py-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                  <div class="md:w-1/4">
+                    <h3 class="text-slate-900 dark:text-white font-bold text-lg">Turing</h3>
+                    <p class="text-purple-700 dark:text-purple-500 text-sm font-mono mb-2">Engenheiro de Software Sênior
+                      de IA</p>
+                    <p class="text-slate-500 text-xs italic">Fev 2025 — Atualmente</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Ferramentas
+                        de IA</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Python</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Automação</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Prototipagem</span>
+                    </div>
+                  </div>
+                  <div class="md:w-3/4 space-y-4">
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Projetando ferramentas com IA
+                      que aceleram o desenvolvimento de jogos, sistemas de treinamento e fluxos de produção.</p>
+                    <div>
+                      <h4
+                        class="text-purple-700 dark:text-[#fbbf24] text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Responsabilidades</h4>
+                      <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Criando ferramentas com IA para fluxos de produção de
+                          jogos.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Automação de pipelines e processos orientados a dados.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Prototipagem rápida de ferramentas e otimização de fluxos
+                          de trabalho.</li>
+                      </ul>
+                    </div>
+                    <div
+                      class="bg-emerald-50/30 border-emerald-100 dark:bg-slate-900/30 dark:border-[#222] p-4 rounded-lg border print:bg-emerald-50/10">
+                      <h4
+                        class="text-emerald-700 dark:text-emerald-500 text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Impacto</h4>
+                      <ul class="space-y-1">
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Ferramentas de IA que aceleram o desenvolvimento e a
+                          produção de jogos.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- The Last Magic -->
+              <div
+                class="border-slate-100 dark:border-[#222] border-b py-8 last:border-0 group print:py-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                  <div class="md:w-1/4">
+                    <h3 class="text-slate-900 dark:text-white font-bold text-lg">The Last Magic</h3>
+                    <p class="text-purple-700 dark:text-purple-500 text-sm font-mono mb-2">Fundador &amp; Engenheiro
+                      Líder</p>
+                    <p class="text-slate-500 text-xs italic">Nov 2023 — Atualmente</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">C++</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">C#</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Lua</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">UDP</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Redis</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Unity</span>
+                    </div>
+                  </div>
+                  <div class="md:w-3/4 space-y-4">
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Construindo um RPG sandbox
+                      online original de ponta a ponta, uma arquitetura projetada para ser rápida, modular, escalável e
+                      responsiva mesmo sob carga pesada.</p>
+                    <div>
+                      <h4
+                        class="text-purple-700 dark:text-[#fbbf24] text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Responsabilidades</h4>
+                      <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Gateway C# próprio com networking UDP via PurrNet.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Gateway também atua como load balancer, monitorando a
+                          contagem de usuários e o healthcheck dos servidores.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Sincronização de dados em tempo real entre servidores com
+                          Redis.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Começou no Godot com backend C++ e Lua; migrado totalmente
+                          para Unity (C#).</li>
+                      </ul>
+                    </div>
+                    <div
+                      class="bg-emerald-50/30 border-emerald-100 dark:bg-slate-900/30 dark:border-[#222] p-4 rounded-lg border print:bg-emerald-50/10">
+                      <h4
+                        class="text-emerald-700 dark:text-emerald-500 text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Impacto</h4>
+                      <ul class="space-y-1">
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Arquitetura responsiva mesmo sob carga pesada.</li>
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Contribuidor open-source do PurrNet (biblioteca de
+                          networking UDP).</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tavernlight -->
+              <div
+                class="border-slate-100 dark:border-[#222] border-b py-8 last:border-0 group print:py-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                  <div class="md:w-1/4">
+                    <h3 class="text-slate-900 dark:text-white font-bold text-lg">Tavernlight Games</h3>
+                    <p class="text-purple-700 dark:text-purple-500 text-sm font-mono mb-2">Engenheiro de Software Sênior
+                    </p>
+                    <p class="text-slate-500 text-xs italic">Mar 2022 — Nov 2023</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">C++</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Lua</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Redis</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">MySQL</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Redes</span>
+                    </div>
+                  </div>
+                  <div class="md:w-3/4 space-y-4">
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Engenharia de cliente e
+                      servidor em Ravendawn / RavenQuest. MMORPGs ao vivo onde baixa latência, performance e
+                      confiabilidade afetam diretamente milhares de jogadores simultâneos.</p>
+                    <div>
+                      <h4
+                        class="text-purple-700 dark:text-[#fbbf24] text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Responsabilidades</h4>
+                      <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Contribuições nos códigos de cliente e servidor em C++ e
+                          Lua.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Integração de Redis para cache e dados distribuídos.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Reestruturação de estruturas de dados para eliminar
+                          gargalos de performance.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Construção de arquitetura modular orientada a eventos com
+                          ambientes de script em Lua.</li>
+                      </ul>
+                    </div>
+                    <div
+                      class="bg-emerald-50/30 border-emerald-100 dark:bg-slate-900/30 dark:border-[#222] p-4 rounded-lg border print:bg-emerald-50/10">
+                      <h4
+                        class="text-emerald-700 dark:text-emerald-500 text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Impacto</h4>
+                      <ul class="space-y-1">
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Eficiência de rede aprimorada no protocolo
+                          cliente–servidor.</li>
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Novas funcionalidades de gameplay e UI/UX entregues a uma
+                          base de jogadores ao vivo.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ZPiano -->
+              <div
+                class="border-slate-100 dark:border-[#222] border-b py-8 last:border-0 group print:py-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                  <div class="md:w-1/4">
+                    <h3 class="text-slate-900 dark:text-white font-bold text-lg">ZPiano</h3>
+                    <p class="text-purple-700 dark:text-purple-500 text-sm font-mono mb-2">Fundador</p>
+                    <p class="text-slate-500 text-xs italic">Abr 2020 — Mar 2022</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Angular</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Firebase</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Serverless</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">CI/CD</span>
+                    </div>
+                  </div>
+                  <div class="md:w-3/4 space-y-4">
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Fundou e construiu um produto
+                      web modular de ponta a ponta, com infraestrutura cloud-native.</p>
+                    <div>
+                      <h4
+                        class="text-purple-700 dark:text-[#fbbf24] text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Responsabilidades</h4>
+                      <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> App web modular com Angular, Ionic e Firebase.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Funções serverless com integrações Stripe e Algolia.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> PWA + SSR com CI/CD via GitHub Actions.</li>
+                      </ul>
+                    </div>
+                    <div
+                      class="bg-emerald-50/30 border-emerald-100 dark:bg-slate-900/30 dark:border-[#222] p-4 rounded-lg border print:bg-emerald-50/10">
+                      <h4
+                        class="text-emerald-700 dark:text-emerald-500 text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Impacto</h4>
+                      <ul class="space-y-1">
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> PWA em produção com pipelines de CI/CD automatizados.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Wingeon -->
+              <div
+                class="border-slate-100 dark:border-[#222] border-b py-8 last:border-0 group print:py-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                  <div class="md:w-1/4">
+                    <h3 class="text-slate-900 dark:text-white font-bold text-lg">Wingeon Game Studios</h3>
+                    <p class="text-purple-700 dark:text-purple-500 text-sm font-mono mb-2">Engenheiro Full Stack</p>
+                    <p class="text-slate-500 text-xs italic">Jan 2018 — Jul 2021</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">C++</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Lua</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Redis</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">MySQL</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Grafana</span>
+                    </div>
+                  </div>
+                  <div class="md:w-3/4 space-y-4">
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Sistemas de gameplay
+                      distribuídos para Grand Line Adventures. Um MMORPG ao vivo rodando em múltiplos servidores com
+                      sincronização de estado em tempo real.</p>
+                    <div>
+                      <h4
+                        class="text-purple-700 dark:text-[#fbbf24] text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Responsabilidades</h4>
+                      <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Sistemas escaláveis de jogo. Torneios, alianças, eventos
+                          in-game e chat, em múltiplos servidores.</li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Sincronização distribuída em tempo real com Redis + Lua.
+                        </li>
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Correção de gargalos no banco de dados com cache de
+                          requisições.</li>
+                      </ul>
+                    </div>
+                    <div
+                      class="bg-emerald-50/30 border-emerald-100 dark:bg-slate-900/30 dark:border-[#222] p-4 rounded-lg border print:bg-emerald-50/10">
+                      <h4
+                        class="text-emerald-700 dark:text-emerald-500 text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Impacto</h4>
+                      <ul class="space-y-1">
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Banda reduzida com refinamento da comunicação
+                          cliente–servidor.</li>
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Análise de erros e de jogo em produção ao vivo com
+                          Grafana.</li>
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Liderou um pequeno time com fluxos Agile.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PlayWest -->
+              <div
+                class="border-slate-100 dark:border-[#222] border-b py-8 last:border-0 group print:py-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                  <div class="md:w-1/4">
+                    <h3 class="text-slate-900 dark:text-white font-bold text-lg">PlayWest</h3>
+                    <p class="text-purple-700 dark:text-purple-500 text-sm font-mono mb-2">Desenvolvedor Unity (Estágio)
+                    </p>
+                    <p class="text-slate-500 text-xs italic">2016 · Bristol, Reino Unido</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Unity</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">C#</span>
+                      <span
+                        class="bg-slate-100 border-slate-200 text-slate-600 dark:bg-slate-900 dark:border-[#333] dark:text-slate-400 px-2 py-0.5 border text-[9px] rounded uppercase print:bg-none print:text-slate-600">Android</span>
+                    </div>
+                  </div>
+                  <div class="md:w-3/4 space-y-4">
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Protótipo Unity/C# para
+                      resposta a emergências no mundo real.</p>
+                    <div>
+                      <h4
+                        class="text-purple-700 dark:text-[#fbbf24] text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Responsabilidades</h4>
+                      <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1">
+                        <li class="text-slate-600 dark:text-slate-400 text-xs flex gap-2"><span
+                            class="text-purple-600">»</span> Protótipo Android em Unity/C# para a RNLI localizar os
+                          voluntários disponíveis mais próximos durante emergências.</li>
+                      </ul>
+                    </div>
+                    <div
+                      class="bg-emerald-50/30 border-emerald-100 dark:bg-slate-900/30 dark:border-[#222] p-4 rounded-lg border print:bg-emerald-50/10">
+                      <h4
+                        class="text-emerald-700 dark:text-emerald-500 text-[10px] font-bold uppercase mb-2 tracking-widest">
+                        Impacto</h4>
+                      <ul class="space-y-1">
+                        <li class="text-slate-700 dark:text-slate-300 text-xs flex gap-2"><span
+                            class="text-emerald-600">✓</span> Protótipo funcional entregue para a RNLI (Royal National
+                          Lifeboat Institution).</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer
+        class="mt-20 border-t border-slate-200 dark:border-[#222] pt-12 text-center text-[10px] text-slate-500 tracking-[0.4em] uppercase font-mono pb-12 print:mt-10 print:pt-6">
+        Joao Pasqualini Costa - Engenheiro C++ Sênior | Sistemas &amp; Backends Distribuídos</footer>
+    </main>
+  </div>
+
+  <script>
+    function setLang(lang) {
+      var en = document.getElementById('content-en');
+      var pt = document.getElementById('content-pt');
+      var btnEn = document.getElementById('btn-en');
+      var btnPt = document.getElementById('btn-pt');
+      var active = 'px-3 py-1 rounded-full text-[10px] md:text-xs font-bold transition-all bg-purple-600 dark:bg-purple-700 text-white';
+      var inactive = 'px-3 py-1 rounded-full text-[10px] md:text-xs font-bold transition-all text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300';
+      if (lang === 'pt') {
+        en.classList.add('hidden');
+        pt.classList.remove('hidden');
+        btnPt.className = active;
+        btnEn.className = inactive;
+        document.getElementById('savePdfLabel').textContent = 'SALVAR PDF';
+        document.documentElement.lang = 'pt-BR';
+      } else {
+        pt.classList.add('hidden');
+        en.classList.remove('hidden');
+        btnEn.className = active;
+        btnPt.className = inactive;
+        document.getElementById('savePdfLabel').textContent = 'SAVE PDF';
+        document.documentElement.lang = 'en';
+      }
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+    }
+
+    // Print always uses the light theme for a clean PDF
+    var wasDark = false;
+    window.addEventListener('beforeprint', function () {
+      wasDark = document.documentElement.classList.contains('dark');
+      document.documentElement.classList.remove('dark');
+    });
+    window.addEventListener('afterprint', function () {
+      if (wasDark) document.documentElement.classList.add('dark');
+    });
+  </script>
+</body>
+
+</html>
