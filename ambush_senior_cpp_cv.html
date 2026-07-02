@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Joao Pasqualini Costa - Senior C++ Engineer | Systems &amp; Distributed Backends</title>
   <meta name="robots" content="noindex" />
+  <script>
+    // Initial theme: a remembered choice wins; otherwise follow the system,
+    // defaulting to light (dark only if the OS explicitly requests it).
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme'); // 'light' | 'dark' | null
+        var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var dark = saved ? saved === 'dark' : systemDark;
+        document.documentElement.classList.toggle('dark', dark);
+      } catch (e) { /* localStorage/matchMedia unavailable -> stays light */ }
+    })();
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { darkMode: 'class' };
@@ -1407,7 +1419,8 @@
     }
 
     function toggleTheme() {
-      document.documentElement.classList.toggle('dark');
+      var dark = document.documentElement.classList.toggle('dark');
+      try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
     }
 
     // Print always uses the light theme for a clean PDF
